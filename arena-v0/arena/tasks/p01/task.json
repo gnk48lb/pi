@@ -1,0 +1,19 @@
+{
+  "id": "p01",
+  "title": "pager: make the library match its README (Python, bug fix)",
+  "lang": "python",
+  "category": "bugfix",
+  "prompt": "The unit tests in this repository fail. Fix the `pager` library so that it behaves as documented in README.md, and make the test suite pass. Do not modify the existing tests. Run the tests before you finish.",
+  "protected": [
+    "tests/test_pager.py",
+    "tests/__init__.py"
+  ],
+  "visible_test_cmd": "python3 -m unittest",
+  "verify": [
+    "python3 -m unittest discover -s tests -t .",
+    "python3 -m unittest tests_hidden.test_spec"
+  ],
+  "verify_timeout": 120,
+  "hidden_dir": "hidden",
+  "ref_diff_lines": 20
+}

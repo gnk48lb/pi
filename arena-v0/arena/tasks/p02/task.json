@@ -1,0 +1,19 @@
+{
+  "id": "p02",
+  "title": "csvstat: add a --format option (Node, feature + tests + docs)",
+  "lang": "node",
+  "category": "feature",
+  "prompt": "Add an `--format <json|table|text>` option to the `csvstat` command line tool in this repository.\n\nBoth `--format json` and `--format=json` must work, the same way `--columns` already does. The option may appear before or after the file name.\n\n- `text` is the default and must keep producing exactly the output it produces today.\n- `json` prints one JSON document, pretty-printed with 2 spaces and followed by a newline. Columns appear in file order, and the stats of a column appear in the order count, min, max, mean, sum. Numbers are rounded the same way as in the text format (at most 4 decimals, trailing zeros dropped) but are JSON numbers, not strings. For `data/sample.csv` it prints exactly:\n\n```\n{\n  \"columns\": {\n    \"price\": {\n      \"count\": 3,\n      \"min\": 1.5,\n      \"max\": 4,\n      \"mean\": 2.6667,\n      \"sum\": 8\n    },\n    \"qty\": {\n      \"count\": 3,\n      \"min\": 1,\n      \"max\": 10,\n      \"mean\": 4.3333,\n      \"sum\": 13\n    }\n  }\n}\n```\n\n- `table` prints a plain-text table: a header row `column | count | min | max | mean | sum`, a separator row, and one row per column. Cells are left-aligned and padded with spaces to the width of the widest cell in their column (header included), cells are joined with ` | `, the separator row has one run of `-` per column as wide as the column, joined with `-|-`, and no line has trailing spaces. For `data/sample.csv` it prints exactly:\n\n```\ncolumn | count | min | max | mean   | sum\n-------|-------|-----|-----|--------|----\nprice  | 3     | 1.5 | 4   | 2.6667 | 8\nqty    | 3     | 1   | 10  | 4.3333 | 13\n```\n\n- Any other value is a usage error: print a message that includes the invalid value to stderr, print nothing to stdout, and exit with code 2.\n\nAlso add tests for the new option in a new file `test/format.test.js` (at least 3 tests), update README.md to document the option, and make sure the whole test suite (`npm test`) still passes. Do not change the existing tests.",
+  "protected": [
+    "test/csv.test.js",
+    "test/stats.test.js"
+  ],
+  "visible_test_cmd": "npm test",
+  "verify": [
+    "node --test test/*.test.js",
+    "node --test hidden_test/*.test.js"
+  ],
+  "verify_timeout": 180,
+  "hidden_dir": "hidden",
+  "ref_diff_lines": 111
+}
