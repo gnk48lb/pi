@@ -1,0 +1,7 @@
+{
+  "orders": [
+    {"id": "A-100", "items": [{"sku": "pen", "price": 1.5, "qty": 10, "category": "office"}, {"sku": "ink", "price": 7.25, "qty": 2, "category": "office"}]},
+    {"id": "A-101", "items": [{"sku": "desk", "price": 220.0, "qty": 1, "category": "furniture"}]},
+    {"id": "A-102", "items": [{"sku": "lamp", "price": 35.9, "qty": 3, "category": "furniture"}, {"sku": "bulb", "price": 2.2, "qty": 6, "category": "electrical"}]}
+  ]
+}

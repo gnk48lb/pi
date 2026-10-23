@@ -1,0 +1,26 @@
+{
+  "id": "p10",
+  "title": "taskq: answer five questions about a job-queue package whose docs are stale (Python, read-only Q&A)",
+  "split": "held",
+  "lang": "python",
+  "category": "qa",
+  "prompt": "Answer five questions about the `taskq` package in this repository. This is a read-only task: do not modify, create or delete any file. The documentation (README.md, docs/operations.md, comments, docstrings) is not guaranteed to be up to date, so base your answers on what the code actually does.\n\n1. Which environment variable sets the default maximum number of attempts of a new job, and what is the default value when it is not set?\n2. With default settings (no environment variables set) and a handler that always raises an ordinary exception, how many seconds does the queue wait before each retry? List the waits in order, one per retry, until the job is finally marked failed.\n3. While `Worker.run_forever()` is running: how often (in seconds) does it look for stuck jobs, and how long (in seconds) must a job have been in the `running` state before it counts as stuck?\n4. A handler raises `FatalJobError` on a job's first attempt. In which state does the job end up, which metrics counter is incremented, and is the job retried?\n5. With default settings, how many attempts does a job get when it is created with `queue.enqueue(\"x\", max_attempts=0)`?\n\nReply with exactly five numbered lines, `1.` to `5.`, one short answer per line.",
+  "protected": [
+    "README.md",
+    "docs/operations.md",
+    "taskq/settings.py",
+    "taskq/backoff.py",
+    "taskq/queue.py",
+    "taskq/worker.py",
+    "taskq/models.py",
+    "taskq/reaper.py",
+    "taskq/store.py"
+  ],
+  "visible_test_cmd": "python3 -m unittest",
+  "verify": [
+    "python3 hidden_check/check_answer.py"
+  ],
+  "verify_timeout": 60,
+  "hidden_dir": "hidden",
+  "ref_diff_lines": 0
+}

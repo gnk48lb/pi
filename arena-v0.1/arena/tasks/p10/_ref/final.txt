@@ -1,0 +1,5 @@
+1. TASKQ_MAX_ATTEMPTS, default 5 (the README's TASKQ_RETRIES / 3 is stale; the 3 on the Job dataclass is never used by enqueue).
+2. 1.5 s, 4.5 s, 13.5 s, 30 s: five attempts in total, so four waits; the fourth would be 40.5 s but is capped at 30 s.
+3. Every 30 s (REAP_INTERVAL, not "once a minute"); a job counts as stuck once it has been running for more than 120 s (VISIBILITY_TIMEOUT).
+4. It ends in state dead (Queue.bury), the "dead" metrics counter is incremented, and it is not retried.
+5. 5: max_attempts=0 is falsy, so enqueue falls back to DEFAULT_MAX_ATTEMPTS (5).

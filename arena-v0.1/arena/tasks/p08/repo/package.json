@@ -1,0 +1,9 @@
+{
+  "name": "logsum",
+  "version": "0.1.0",
+  "description": "Summarise a web server access log",
+  "scripts": {
+    "test": "node --test test/*.test.js"
+  },
+  "license": "MIT"
+}

@@ -1,0 +1,19 @@
+{
+  "id": "p03",
+  "title": "invtrack: rename calc_total -> compute_order_total with a deprecated alias (Python, refactor)",
+  "split": "dev",
+  "lang": "python",
+  "category": "refactor",
+  "prompt": "Rename the function `calc_total` in `invtrack/pricing.py` to `compute_order_total`, and rename its parameter `tax` to `tax_rate`.\n\n- Update every place in the repository that uses the old name or the old keyword: library code, tests, README and docs. Nothing inside the `invtrack` package other than the alias itself may mention the old name any more.\n- Keep `calc_total(items, tax=0.0)` available as a deprecated alias for outside users. It must return the same values (called positionally or with `tax=`) and emit a `DeprecationWarning` whose message mentions `compute_order_total`, attributed to the caller's line (`stacklevel=2`).\n- Behaviour must not change: the command line tool must run without emitting any DeprecationWarning and print exactly what it printed before.\n- Add a test for the deprecated alias, keep the existing tests, and make sure `python3 -m unittest` passes.",
+  "protected": [
+    "data/sample.json"
+  ],
+  "visible_test_cmd": "python3 -m unittest",
+  "verify": [
+    "python3 -m unittest discover -s tests -t .",
+    "python3 -m unittest tests_hidden.test_rename"
+  ],
+  "verify_timeout": 120,
+  "hidden_dir": "hidden",
+  "ref_diff_lines": 45
+}
