@@ -1,0 +1,10 @@
+{
+  "name": "checkout",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Order totals for a small web shop",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "node --test test/*.test.js"
+  }
+}

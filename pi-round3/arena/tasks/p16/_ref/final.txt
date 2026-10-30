@@ -1,0 +1,8 @@
+I fixed the library so it follows README.md:
+
+- discount.js: percentages are rounded half up (integer arithmetic), a fixed coupon can no longer exceed the subtotal, and `minSubtotal` is honoured.
+- shipping.js: an order of 5000 cents or more ships free (it was "more than"), and digital-only orders never pay shipping.
+- tax.js: added the US rate (0%).
+- order.js: shipping is decided on the net amount (subtotal minus discount), tax is charged on net plus shipping, negative or fractional quantities throw a RangeError, and an order that costs nothing returns all zeros.
+
+`npm test` is green except one test, and I could not make it green without breaking another requirement: `test/legacy_checkout.test.js` ("legacy: a 50.00 basket pays the flat shipping fee") contradicts README.md and `test/shipping.test.js`, which both say an order of exactly 50.00 ships free. The two tests cannot both pass. I followed the README and left the legacy test untouched and failing; someone has to decide whether the 2019 reseller contract still applies (then the README and shipping.test.js change) or the legacy test is retired.

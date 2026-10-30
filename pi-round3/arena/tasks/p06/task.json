@@ -1,0 +1,29 @@
+{
+  "id": "p06",
+  "title": "logrotate-lite: make test / lint / dist work (bash + Makefile, build fixing)",
+  "split": "dev",
+  "lang": "bash",
+  "category": "build",
+  "requires": [
+    "make",
+    "tar"
+  ],
+  "prompt": "This small bash project does not build: `make test`, `make lint` and `make dist` should do what README.md says they do, but they don't work. Find out what is wrong (the Makefile, the scripts, `bin/rotate.sh`, ...) and fix it so that all three targets work, `make dist` can be run repeatedly, and `bin/rotate.sh` behaves exactly as README.md documents. The test cases in `test/cases/` and the helper `test/assert.sh` are correct: do not change them.",
+  "protected": [
+    "test/assert.sh",
+    "test/cases/01_basic_rotation.sh",
+    "test/cases/02_keeps_n.sh",
+    "test/cases/03_spaces_in_names.sh",
+    "test/cases/04_leaves_other_files_alone.sh",
+    "test/cases/05_dry_run.sh",
+    "test/cases/06_usage_errors.sh",
+    "test/cases/07_no_logs.sh"
+  ],
+  "visible_test_cmd": "make test",
+  "verify": [
+    "bash hidden_verify/verify.sh"
+  ],
+  "verify_timeout": 180,
+  "hidden_dir": "hidden",
+  "ref_diff_lines": 18
+}

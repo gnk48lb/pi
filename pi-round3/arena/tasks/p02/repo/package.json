@@ -1,0 +1,10 @@
+{
+  "name": "csvstat",
+  "version": "1.0.0",
+  "description": "Print summary statistics for the numeric columns of a CSV file",
+  "bin": { "csvstat": "bin/csvstat.js" },
+  "scripts": {
+    "test": "node --test test/*.test.js"
+  },
+  "license": "MIT"
+}

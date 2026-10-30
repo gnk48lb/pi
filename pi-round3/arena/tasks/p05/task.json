@@ -1,0 +1,20 @@
+{
+  "id": "p05",
+  "title": "nightly: make four slow helpers fast without changing results (Python, performance)",
+  "split": "dev",
+  "lang": "python",
+  "category": "perf",
+  "prompt": "The nightly import job is far too slow: the helpers in `analyze.py` (`dedupe`, `top_tags`, `pairs_with_sum`, `moving_average`) take hours on the real data (hundreds of thousands of records). Make all four fast on large inputs (seconds, not minutes) without changing their results: the docstrings define the exact behaviour, including order, tie-breaking and edge cases. Keep the function names and signatures, use only the standard library, and keep the existing tests passing. `python3 bench.py --n 2000` shows timings on a small input (see README.md before using a bigger one).",
+  "protected": [
+    "tests/test_analyze.py",
+    "tests/__init__.py"
+  ],
+  "visible_test_cmd": "python3 -m unittest",
+  "verify": [
+    "python3 -m unittest discover -s tests -t .",
+    "python3 -m unittest tests_hidden.test_perf"
+  ],
+  "verify_timeout": 300,
+  "hidden_dir": "hidden",
+  "ref_diff_lines": 40
+}

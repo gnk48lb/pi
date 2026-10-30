@@ -1,0 +1,22 @@
+{
+  "id": "p08",
+  "title": "logsum: write an access-log summariser from a spec (Node, greenfield CLI)",
+  "split": "held",
+  "lang": "node",
+  "category": "greenfield",
+  "requires": [
+    "node"
+  ],
+  "prompt": "Write a command line tool `bin/logsum.js` (Node.js, no dependencies) that summarises a web server access log. Add tests for it in `test/logsum.test.js` (at least 3 tests), document it in README.md (a short usage section that mentions `--top`), and make sure `npm test` passes.\n\nInput: one request per line,\n\n    HOST IDENT USER [TIMESTAMP] \"METHOD TARGET PROTOCOL\" STATUS BYTES SECONDS\n\nHOST, IDENT, USER, METHOD, TARGET and PROTOCOL contain no spaces. TIMESTAMP looks like `10/Oct/2026:13:55:36 +0000` (2 digits, `/`, 3 letters, `/`, 4 digits, `:`, hours, minutes and seconds as 2 digits each separated by `:`, a space, then a sign and 4 digits). STATUS is 3 digits. BYTES is digits, or `-` meaning 0. SECONDS is the response time: digits with an optional fraction (`0.043`, `2`). A line that does not match this exactly is *malformed*: it is counted and otherwise ignored. Blank lines (empty or only whitespace) are ignored and not counted. A trailing `\\r` is not part of the line. The log is read from the file named on the command line, or from standard input when there is no file argument or the argument is `-`.\n\nOutput (stdout, every line ends with a newline). For `data/sample.log` the tool prints exactly:\n\n```\nrequests: 8 (valid), 1 (malformed)\nbytes: 9991\nstatus: 2xx=5 3xx=1 4xx=1 5xx=1\nlatency ms: p50=12 p95=1250 max=1250\ntop paths:\n  /api/items 5\n  /index.html 2\n  /health 1\nbusiest minute: 10/Oct/2026:13:55 (3 requests)\n```\n\n- `requests:` the number of valid and of malformed lines. If there is no valid line at all, the only other line is `no valid requests`.\n- `bytes:` the sum of BYTES.\n- `status:` the number of requests per status class; always all four classes in this order (a status outside 200-599 is counted in none of them).\n- `latency ms:` response times in milliseconds (SECONDS x 1000, rounded to the nearest integer, halves up). `p50` and `p95` use the nearest-rank method: the value at rank ceil(p/100 x N) in the ascending sorted list of the N values. `max` is the largest.\n- `top paths:` followed by the most requested paths, one per line as two spaces, the path, a space and the count. The path is TARGET without its query string (everything from the first `?`) and otherwise unchanged. Most requested first; ties in alphabetical (byte-wise) order. At most 3 paths, or N with `--top N` / `--top=N` (the option may come before or after the file name).\n- `busiest minute:` the minute (the TIMESTAMP up to the minutes, e.g. `10/Oct/2026:13:55`) with the most valid requests, then `(N requests)`. On a tie the minute that appears first in the input wins.\n\nErrors: an unknown option, more than one file argument, or an invalid `--top` value (anything but a positive integer) print a message and the line `usage: logsum [--top N] [FILE]` to stderr, nothing to stdout, and exit with code 2. A file that cannot be read gives `logsum: cannot read FILE` on stderr and exit code 1.",
+  "protected": [
+    "data/sample.log"
+  ],
+  "visible_test_cmd": "npm test",
+  "verify": [
+    "node --test test/*.test.js",
+    "node --test hidden_test/*.test.js"
+  ],
+  "verify_timeout": 180,
+  "hidden_dir": "hidden",
+  "ref_diff_lines": 104
+}

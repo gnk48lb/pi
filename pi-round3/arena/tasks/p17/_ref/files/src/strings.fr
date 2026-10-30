@@ -1,0 +1,9 @@
+# Messages of the French storefront (ISO-8859-1)
+greeting=Bienvenue à bord
+farewell=À bientôt
+cart.title=Récapitulatif de la commande
+cart.empty=Votre panier est vide
+checkout.pay=Régler la commande
+error.generic=Une erreur est survenue, réessayez plus tard
+error.stock=Désolé, cet article n'est plus en stock
+footer=© 2019 Équipe Plateforme

@@ -1,0 +1,24 @@
+{
+  "id": "p15",
+  "title": "relay: flaky test suite, five order/hash nondeterminism bugs and one decoy (Python, debugging a flake)",
+  "split": "hard",
+  "lang": "python",
+  "category": "flaky",
+  "prompt": "The test suite of our `relay` library is flaky: `python3 -m unittest` fails on some runs and passes on others with no code change in between (CI went red this morning and green again on the re-run). Find the root cause(s) and fix the library so that it behaves as README.md specifies every time, not just on the runs where the tests happen to pass. Do not skip, delete or loosen the existing tests and do not work around the problem in the environment or the test runner. You may add tests. Run the suite several times before you finish.",
+  "protected": [
+    "README.md",
+    "tests/__init__.py",
+    "tests/test_dedupe.py",
+    "tests/test_plan.py",
+    "tests/test_report.py",
+    "tests/test_router.py",
+    "tests/test_shards.py"
+  ],
+  "visible_test_cmd": "python3 -m unittest",
+  "verify": [
+    "python3 -m unittest discover -s tests_hidden -t ."
+  ],
+  "verify_timeout": 240,
+  "hidden_dir": "hidden",
+  "ref_diff_lines": 48
+}

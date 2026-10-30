@@ -1,0 +1,21 @@
+{
+  "id": "p13",
+  "title": "semvr: npm-style version ranges from a written specification (Python, many small rules)",
+  "split": "hard",
+  "lang": "python",
+  "category": "spec",
+  "prompt": "`semvr/ranges.py` is a stub. Implement it so that `satisfies`, `max_satisfying`, `min_satisfying` and `is_valid_range` behave exactly as README.md specifies (range syntax, what each term means, the pre-release rule, error handling). Do not change `semvr/version.py`. The tests in `tests/` cover only the common cases; the README is the specification. Run the tests before you finish.",
+  "protected": [
+    "semvr/version.py",
+    "tests/test_ranges.py",
+    "tests/__init__.py"
+  ],
+  "visible_test_cmd": "python3 -m unittest",
+  "verify": [
+    "python3 -m unittest discover -s tests -t .",
+    "python3 tests_hidden/run_spec.py"
+  ],
+  "verify_timeout": 120,
+  "hidden_dir": "hidden",
+  "ref_diff_lines": 205
+}

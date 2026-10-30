@@ -1,0 +1,30 @@
+{
+  "id": "p17",
+  "title": "gateway: v1 -> v2 bulk edit of legacy files that must stay byte-identical (Node; mixed CRLF/LF, tabs, Latin-1, minified JSON)",
+  "split": "hard",
+  "lang": "node",
+  "category": "fidelity",
+  "requires": [
+    "node"
+  ],
+  "prompt": "Our gateway is moving its public API from v1 to v2. Please make these changes:\n\n1. In `src/routes.js`, every route path that starts with `/api/v1/` must start with `/api/v2/` instead, except the routes marked `// legacy: keep` (old mobile clients still call those).\n2. In `config/manifest.json`, set the service `version` to `2.0.0`. Leave `schemaVersion` and everything else as it is.\n3. In `src/strings.fr`, change the greeting from `Bienvenue` to `Bienvenue à bord`.\n\nThese three files are consumed by other tooling that compares them byte for byte, so change nothing but what is listed here. Run the tests before you finish.",
+  "protected": [
+    "README.md",
+    "package.json",
+    "src/app.js",
+    "src/auth.js",
+    "src/db.js",
+    "src/i18n.js",
+    "test/manifest.test.js",
+    "test/routes.test.js",
+    "test/strings.test.js"
+  ],
+  "visible_test_cmd": "npm test",
+  "verify": [
+    "node --test test/*.test.js",
+    "node --test hidden_test/bytes.test.js"
+  ],
+  "verify_timeout": 120,
+  "hidden_dir": "hidden",
+  "ref_diff_lines": 46
+}

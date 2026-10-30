@@ -1,0 +1,13 @@
+{
+  "_comment": "USD per 1M tokens. ONE table for every agent, so cost differences come from token counts only (agent-reported costs are ignored: Claude Code does not know this model). cache_write is billed like a miss on DeepSeek. DeepSeek's peak-hour x2 surcharge is NOT modelled: run the arena off-peak. Prices copied from the roadmap doc's price table; re-check them against the provider page before trusting absolute dollars.",
+  "models": {
+    "deepseek-v4.1-flash": {
+      "match": ["deepseek-v4.1-flash", "deepseek-v4-flash"],
+      "input": 0.15, "cache_read": 0.003, "cache_write": 0.15, "output": 0.6
+    },
+    "mock-model": {
+      "match": ["mock-model"],
+      "input": 3.0, "cache_read": 0.3, "cache_write": 3.75, "output": 15.0
+    }
+  }
+}

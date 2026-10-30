@@ -1,0 +1,25 @@
+{
+  "id": "p18",
+  "title": "shopcore: a new required keyword argument for the pricing functions, callers hidden behind aliases, a registry, partial and getattr (Python, cross-cutting change)",
+  "split": "hard",
+  "lang": "python",
+  "category": "refactor",
+  "prompt": "The shop now sells in USD, GBP and CHF, but `shopcore` still computes every price in euros (a USD cart shows the euro amount under a \"USD\" label). Fix this: make `currency` a required keyword-only parameter (no default value) of both pricing functions in `shopcore/pricing.py`, so that they return the price converted into that currency (use `shopcore.currency.convert`), and update every caller in the package so that each item is priced in the currency of the cart / order / request it belongs to. Results in euro must stay the same. The tests in `tests/` do not exercise every entry point of the package, so check the callers yourself. Run the tests before you finish.",
+  "protected": [
+    "README.md",
+    "shopcore/catalog.py",
+    "shopcore/currency.py",
+    "tests/__init__.py",
+    "tests/test_cart.py",
+    "tests/test_cli.py",
+    "tests/test_orders.py",
+    "tests/test_pricing.py"
+  ],
+  "visible_test_cmd": "python3 -m unittest",
+  "verify": [
+    "python3 -m unittest discover -s tests_hidden -t ."
+  ],
+  "verify_timeout": 120,
+  "hidden_dir": "hidden",
+  "ref_diff_lines": 27
+}

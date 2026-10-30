@@ -1,0 +1,10 @@
+{
+  "name": "shelfwise",
+  "version": "1.2.0",
+  "description": "In-memory bookstore API (no HTTP server needed: handlers are plain functions)",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "node --test test/*.test.js"
+  },
+  "license": "MIT"
+}

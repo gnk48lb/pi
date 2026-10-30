@@ -1,0 +1,27 @@
+{
+  "id": "p04",
+  "title": "shelfwise: tests fail, find the root cause (Node, debugging in a layered repo)",
+  "split": "dev",
+  "lang": "node",
+  "category": "bugfix",
+  "requires": [
+    "node"
+  ],
+  "prompt": "Five tests in this repository fail (`npm test`). Find the root cause and fix it properly, so that all tests pass and the behaviour described in README.md holds in general (not just for the exact cases the failing tests happen to check). Do not modify the existing tests.",
+  "protected": [
+    "test/books.test.js",
+    "test/authors.test.js",
+    "test/orders.test.js",
+    "test/paginate.test.js",
+    "test/query.test.js",
+    "test/helpers.js"
+  ],
+  "visible_test_cmd": "npm test",
+  "verify": [
+    "node --test test/*.test.js",
+    "node --test hidden_test/*.test.js"
+  ],
+  "verify_timeout": 180,
+  "hidden_dir": "hidden",
+  "ref_diff_lines": 22
+}

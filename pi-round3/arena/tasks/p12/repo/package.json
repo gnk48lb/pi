@@ -1,0 +1,10 @@
+{
+  "name": "spendsum",
+  "version": "0.4.0",
+  "description": "Summarise an expense export (CSV) into a per-category report in US dollars",
+  "bin": { "spendsum": "bin/spendsum.js" },
+  "scripts": {
+    "test": "node --test test/*.test.js"
+  },
+  "license": "MIT"
+}

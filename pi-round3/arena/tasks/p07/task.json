@@ -1,0 +1,20 @@
+{
+  "id": "p07",
+  "title": "discounts: write the missing unit tests (Python, tests judged by mutation)",
+  "split": "dev",
+  "lang": "python",
+  "category": "tests",
+  "prompt": "`discounts.py` has no tests at all. Write a thorough unittest suite for it in `tests/test_discounts.py` (add more files under `tests/` if you like), based on the behaviour documented in README.md. The tests must pass on the current implementation, and they should be good enough that they would catch a regression: somebody will later try small deliberate breakages of `discounts.py` (a changed comparison, a different rounding, a dropped check, ...) and your tests have to fail for most of them. Do not change `discounts.py` or README.md. Run the suite before you finish.",
+  "protected": [
+    "discounts.py",
+    "README.md",
+    "tests/__init__.py"
+  ],
+  "visible_test_cmd": "python3 -m unittest",
+  "verify": [
+    "python3 hidden_check/run.py"
+  ],
+  "verify_timeout": 600,
+  "hidden_dir": "hidden",
+  "ref_diff_lines": 0
+}

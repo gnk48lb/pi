@@ -1,0 +1,20 @@
+{
+ "crlf.log": {
+  "default": "requests: 4 (valid), 1 (malformed)\nbytes: 207\nstatus: 2xx=1 3xx=1 4xx=1 5xx=1\nlatency ms: p50=2 p95=2000 max=2000\ntop paths:\n  /a 2\n  /b 1\n  /c 1\nbusiest minute: 10/Oct/2026:13:55 (4 requests)\n"
+ },
+ "ties.log": {
+  "default": "requests: 7 (valid), 0 (malformed)\nbytes: 700\nstatus: 2xx=7 3xx=0 4xx=0 5xx=0\nlatency ms: p50=400 p95=700 max=700\ntop paths:\n  /alpha 2\n  /zeta 2\n  /beta 1\nbusiest minute: 11/Oct/2026:00:01 (3 requests)\n",
+  "top2": "requests: 7 (valid), 0 (malformed)\nbytes: 700\nstatus: 2xx=7 3xx=0 4xx=0 5xx=0\nlatency ms: p50=400 p95=700 max=700\ntop paths:\n  /alpha 2\n  /zeta 2\nbusiest minute: 11/Oct/2026:00:01 (3 requests)\n",
+  "top10": "requests: 7 (valid), 0 (malformed)\nbytes: 700\nstatus: 2xx=7 3xx=0 4xx=0 5xx=0\nlatency ms: p50=400 p95=700 max=700\ntop paths:\n  /alpha 2\n  /zeta 2\n  /beta 1\n  /mid 1\n  /zeta/ 1\nbusiest minute: 11/Oct/2026:00:01 (3 requests)\n"
+ },
+ "none.log": {
+  "default": "requests: 0 (valid), 3 (malformed)\nno valid requests\n"
+ },
+ "latency.log": {
+  "default": "requests: 20 (valid), 0 (malformed)\nbytes: 2000\nstatus: 2xx=20 3xx=0 4xx=0 5xx=0\nlatency ms: p50=100 p95=190 max=200\ntop paths:\n  /p0 5\n  /p1 5\n  /p2 5\nbusiest minute: 12/Oct/2026:09:01 (7 requests)\n"
+ },
+ "mixed.log": {
+  "default": "requests: 2 (valid), 5 (malformed)\nbytes: 100\nstatus: 2xx=1 3xx=0 4xx=0 5xx=1\nlatency ms: p50=250 p95=1234 max=1234\ntop paths:\n  / 1\n  /x%20y 1\nbusiest minute: 10/Oct/2026:13:55 (2 requests)\n"
+ },
+ "sample": "requests: 8 (valid), 1 (malformed)\nbytes: 9991\nstatus: 2xx=5 3xx=1 4xx=1 5xx=1\nlatency ms: p50=12 p95=1250 max=1250\ntop paths:\n  /api/items 5\n  /index.html 2\n  /health 1\nbusiest minute: 10/Oct/2026:13:55 (3 requests)\n"
+}

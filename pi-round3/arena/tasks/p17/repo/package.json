@@ -1,0 +1,10 @@
+{
+  "name": "gateway",
+  "version": "1.4.2",
+  "private": true,
+  "description": "Public API gateway of the shop",
+  "main": "src/app.js",
+  "scripts": {
+    "test": "node --test test/*.test.js"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "id": "p09",
+  "title": "notes_app: path traversal and symlink escape in a storage layer (Python, security fix)",
+  "split": "held",
+  "lang": "python",
+  "category": "security",
+  "prompt": "A security researcher reports that `notes_app/storage.py` lets a user read, overwrite and delete other users' notes, and even files elsewhere on the server, by sending crafted `user` and `name` arguments (both come straight from HTTP requests). Fix the vulnerabilities.\n\n- `read_note`, `save_note`, `delete_note` and `list_notes` must only ever touch files inside `<base_dir>/<user>/`, whatever `user` and `name` are, and also when a symbolic link inside the user's directory points somewhere else.\n- Anything that is not allowed raises `NotesError` (from `notes_app.errors`) before any file is touched. That includes: a `user` that is not 1-64 characters from `A-Z a-z 0-9 _ . -` or that is `.` or `..`; a `name` that is empty, contains a NUL character, is absolute, or has an empty, `.` or `..` path segment (names use `/` as the separator); and anything that would resolve to a path outside the user's own directory.\n- Honest use must keep working: names with spaces or unicode, dots inside names (`a..b.txt`, `.hidden`), sub-folders (`2026/todo.txt`), and symbolic links that stay inside the user's own directory. A note that does not exist is still a `FileNotFoundError`.\n- Add tests for the attacks you fixed in `tests/test_security.py` (include the symbolic link cases) and keep the existing tests passing.",
+  "protected": [
+    "tests/test_storage.py",
+    "tests/__init__.py",
+    "notes_app/errors.py"
+  ],
+  "visible_test_cmd": "python3 -m unittest",
+  "verify": [
+    "python3 -m unittest discover -s tests -t .",
+    "python3 -m unittest tests_hidden.test_attacks"
+  ],
+  "verify_timeout": 120,
+  "hidden_dir": "hidden",
+  "ref_diff_lines": 37
+}

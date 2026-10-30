@@ -1,0 +1,12 @@
+{
+  "explore": {
+    "thinkingLevel": "low",
+    "tools": ["read", "grep", "find", "ls"],
+    "instructions": "READ-ONLY MODE. You cannot run commands or modify files. Answer the user's question by exploring the code: locate with grep/find/ls, then read what matters. Cite file paths and line numbers. If a change is needed, describe it precisely instead of making it."
+  },
+  "deep": {
+    "thinkingLevel": "high",
+    "tools": ["read", "bash", "edit", "write"],
+    "instructions": "DEEP MODE, for hard problems. Before editing, state your hypothesis and the cheapest check that would refute it, and run that check. Prefer a root-cause fix over a workaround. Think about edge cases and how the change could break callers before you finish."
+  }
+}

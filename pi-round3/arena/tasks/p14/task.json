@@ -1,0 +1,26 @@
+{
+  "id": "p14",
+  "title": "billing: wrong invoice amounts, eight independent bugs behind four visible failures (Node, spec + debugging)",
+  "split": "hard",
+  "lang": "node",
+  "category": "bugfix",
+  "requires": [
+    "node"
+  ],
+  "prompt": "Our `billing` library (billing cycles, proration, invoices) computes wrong amounts for some subscriptions, and a few tests in `test/` already fail. Fix the library so that it behaves exactly as README.md specifies. The tests in `test/` cover only the basics; the README is the specification, including the calendar and rounding rules, so check the code against all of it, not only against the failing tests. Do not change the existing tests or README.md (you may add tests). Run `npm test` before you finish.",
+  "protected": [
+    "README.md",
+    "package.json",
+    "test/cycle.test.js",
+    "test/proration.test.js",
+    "test/invoice.test.js"
+  ],
+  "visible_test_cmd": "npm test",
+  "verify": [
+    "node --test test/*.test.js",
+    "node --test hidden_test/*.test.js"
+  ],
+  "verify_timeout": 120,
+  "hidden_dir": "hidden",
+  "ref_diff_lines": 22
+}

@@ -1,0 +1,1 @@
+{"name":"gateway","version":"1.4.2","schemaVersion":3,"owner":"\u00c9quipe Plateforme","ratio":1.0,"features":{"audit":true,"rateLimit":{"perMinute":600}},"deps":{"express-lite":{"version":"^4.1.0"},"pg-shim":{"version":"2.3.1"}},"routesFile":"src/routes.js"}

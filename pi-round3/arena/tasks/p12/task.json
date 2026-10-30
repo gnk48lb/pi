@@ -1,0 +1,26 @@
+{
+  "id": "p12",
+  "title": "spendsum: crash on an Excel-style CSV export, root cause is three layers below the stack trace (Node, debugging)",
+  "split": "held",
+  "lang": "node",
+  "category": "debug",
+  "requires": [
+    "node"
+  ],
+  "prompt": "The expense report of our `spendsum` tool crashes on the March export:\n\n```\n$ node bin/spendsum.js report data/march.csv --month 2026-03\n/home/dev/spendsum/src/cli.js:37\n    throw e;\n    ^\n\nTypeError: Cannot read properties of undefined (reading 'startsWith')\n    at inMonth (/home/dev/spendsum/src/ledger.js:23:19)\n    at summarize (/home/dev/spendsum/src/ledger.js:30:19)\n    at Object.main (/home/dev/spendsum/src/cli.js:30:28)\n    at Object.<anonymous> (/home/dev/spendsum/bin/spendsum.js:3:42)\n    at Module._compile (node:internal/modules/cjs/loader:1706:14)\n```\n\nThe February report (`data/feb.csv`) works fine. `data/march.csv` is the first export from the company's new accounting system (it was opened and saved with Excel). Find out what is wrong and fix it properly, so that `spendsum report` gives the correct report for the March file and for any other file written the same way. Do not silence real input errors: bad amounts and unknown currencies must still be reported as README.md describes. Add regression tests under `test/` (keep the existing tests passing). Before you finish, run the report on `data/march.csv` and check the numbers yourself.",
+  "protected": [
+    "data/march.csv",
+    "data/feb.csv",
+    "data/rates.json",
+    "package.json"
+  ],
+  "visible_test_cmd": "npm test",
+  "verify": [
+    "node --test test/*.test.js",
+    "node --test hidden_test/*.test.js",
+    "node hidden_test/require_new_tests.js"
+  ],
+  "verify_timeout": 180,
+  "hidden_dir": "hidden",
+  "ref_diff_lines": 52
+}
